@@ -21,7 +21,7 @@ class root:
 		self.file.read_journal = exectutable(root.read_journal)
 		self.file.mesh_replace = exectutable(root.mesh_replace)
 		self.file.write_case = exectutable(root.write_case)
-		self.write_case_data = exectutable(root.write_case_data)
+		self.file.write_case_data = exectutable(root.write_case_data)
 		
 		'''
 		DEFINE SECTION
@@ -85,6 +85,7 @@ class root:
 		self.report.fluxes.heat_transfer = exectutable(root.heat_transfer)
 
 		self.report.surface_integrals = branch()
+		self.report.surface_integrals.area = exectutable(root.area)
 		self.report.surface_integrals.facet_avg = exectutable(root.facet_avg)
 
 	def save(self, path):
@@ -293,6 +294,7 @@ class root:
 				format(' '.join(list_zones), path)
 			]
 
+	@staticmethod
 	def heat_transfer(root, path, all_zones=True, list_zones=[]):
 		if all_zones:
 			root.cmd += [
@@ -305,15 +307,20 @@ class root:
 				format(' '.join(list_zones), path)
 			]
 
+	@staticmethod
 	def facet_avg(root, path, value, list_zones):
+		if type(list_zones) == str:
+			list_zones = [list_zones]
 		root.cmd += [
 			'/report/surface-integrals/facet-avg {} () {} yes "{}" y '.\
 			format(' '.join(list_zones), value, path)
 		]
 
 	@staticmethod
-	def name(root, par):
+	def area(root, path, list_zones):
+		if type(list_zones) == str:
+			list_zones = [list_zones]
 		root.cmd += [
-			''.\
-			format(par)
+			'/report/surface-integrals/area {} () yes "{}" yes '.\
+			format(' '.join(list_zones), path)
 		]
