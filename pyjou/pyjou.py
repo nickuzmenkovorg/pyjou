@@ -18,7 +18,7 @@ class root:
 		'''
 		self.file = branch()
 		self.file.read_case = exectutable(root.read_case)
-		self.read_journal = exectutable(root.read_journal)
+		self.file.read_journal = exectutable(root.read_journal)
 		self.file.mesh_replace = exectutable(root.mesh_replace)
 		self.file.write_case = exectutable(root.write_case)
 		self.write_case_data = exectutable(root.write_case_data)
