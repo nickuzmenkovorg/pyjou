@@ -1,7 +1,7 @@
 ''' MAIN JOURNALING UNIT '''
 
 ''' SET FUNCTIONS '''
-from functions import *
+from pyjou.functions import *
 
 ''' AN EMPTY BRANCH CLASS '''
 class branch:

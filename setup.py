@@ -7,7 +7,7 @@ requirements = ["ipython>=6", "nbformat>=4", "nbconvert>=5", "requests>=2"]
 
 setup(
     name="pyjou",
-    version="v0.0.7",
+    version="v0.0.8",
     author="Nick Kuzmenkov",
     author_email="nickuzmenkov@yahoo.com",
     description="Fluent Journal API",
