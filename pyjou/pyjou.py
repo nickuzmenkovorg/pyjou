@@ -17,13 +17,15 @@ class executable:
 		self.function = function
 
 	def set(self, *args, **kwargs):
-		self.parent.cmd += [self.function(*args, **kwargs)]
+		self.parent._cmd += [self.function(*args, **kwargs)]
 
 ''' MAIN JOURNALING CLASS '''
 class root:
+
+	''' DUNDER METHODS '''
 	
 	def __init__(self):
-		self.cmd = []
+		self._cmd = []
 
 		''' FILE SECTION '''
 		self.file = branch()
@@ -88,7 +90,19 @@ class root:
 		self.report.surface_integrals.area = executable(self, area)
 		self.report.surface_integrals.facet_avg = executable(self, facet_avg)
 
+	def __repr__(self):
+		return f'<Journal Object( {len(self._cmd)} command line(s) )>'
+
+	def __add__(self, other):
+		self._cmd += other._cmd
+		return self
+
+	def __getitem__(self, index):
+		return self._cmd[index]
+
+	''' METHODS '''
+
 	def save(self, path):
 			with open(path, 'w') as f:
-				for item in self.cmd:
+				for item in self._cmd:
 					f.write('%s\n' % item)
