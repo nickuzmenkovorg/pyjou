@@ -20,7 +20,7 @@ class executable:
 		self.parent._cmd += [self.function(*args, **kwargs)]
 
 ''' MAIN JOURNALING CLASS '''
-class root:
+class Journal:
 
 	''' DUNDER METHODS '''
 	
@@ -44,6 +44,7 @@ class root:
 
 		self.define.models = branch()
 		self.define.models.viscous = executable(self, viscous)
+		self.define.models.viscous.near_wall_treatment = executable(self, near_wall_treatment)
 
 		''' SURFACE SECTION '''
 		self.surface = branch()

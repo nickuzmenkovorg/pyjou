@@ -1,1 +1,1 @@
-from pyjou.pyjou import root
+from pyjou.pyjou import Journal
